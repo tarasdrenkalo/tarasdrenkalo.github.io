@@ -1,0 +1,11 @@
+{
+    "name":"Test Website",
+    "start_url":"https://tarasdrenkalo.github.io",
+    "display":"fullscreen",
+    "theme_color":"blue",
+    "lang":"en-US",
+    "dir":"ltr",
+    "orientation":"portrait",
+    "description":"Test Website, made with Webpage Design Course",
+    "categories":"design"
+}

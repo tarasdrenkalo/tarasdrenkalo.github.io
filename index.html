@@ -1,2 +1,79 @@
-Welcome to my website
-Will there be noded? Yes! There will be nodes
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Document</title>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="manifest" href="./manifest.json">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script src="./scripts/app.vue.js"></script>
+        <script src="./scripts/nodes.featured.js"></script>
+        <script src="./scripts/action.favourite.js"></script>
+    </head>
+    <body>
+        <div id="vue-main">
+            <!--Header-->
+            <div class="container">
+                <header class="d-flex justify-content-center py-3">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item"><a href="./index.html" class="nav-link active" aria-current="page">{{ Site.Labels.Home }}</a></li>
+                        <li class="nav-item"><a href="./nodes.html" class="nav-link">{{ Site.Labels.Nodes }}</a></li>
+                        <li class="nav-item"><a href="./favourites.html" class="nav-link">{{ Site.Labels.Favourites }}</a></li>
+                        <li class="nav-item"><a href="./questions.html" class="nav-link">{{ Site.Labels.Questions }}</a></li>
+                        <li class="nav-item"><a href="./about.html" class="nav-link">{{ Site.Labels.About }}</a></li>
+                        <li class="nav-item dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ Site.Labels.Languages }}
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="?Language=en">{{ Site.Language.English.Name }}</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </header>
+            </div>
+
+            <hr>
+
+            <div class="container">
+                <main>
+                    <div class="card" id="featured-node">
+                        <div class="card-header">
+                            {{Site.Labels.Featured}}
+                        </div>
+                        <div class="card-body">
+                            <h5 id="featured-node-headline" class="card-title"></h5>
+                            <p id="featured-node-article" class="card-text"></p>
+                            <a id="featured-node-link" href="#" class="btn btn-primary">{{Site.Labels.Read}}</a>&nbsp;
+                            <a id="featured-node-act-fav" href="#" class="btn btn-primary">{{Site.Labels.Favourite}}</a>
+                        </div>
+                    </div>
+                </main>
+            </div>
+
+            <hr>
+
+            <div class="container">
+                <footer class="py-3 my-4">
+                    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                    <li class="nav-item"><a href="./index.html" class="nav-link px-2 text-body-secondary">{{ Site.Labels.Home }}</a></li>
+                    <li class="nav-item"><a href="./nodes.html" class="nav-link px-2 text-body-secondary">{{ Site.Labels.Nodes }}</a></li>
+                    <li class="nav-item"><a href="./favourites.html" class="nav-link px-2 text-body-secondary">{{ Site.Labels.Favourites }}</a></li>
+                    <li class="nav-item"><a href="./questions.html" class="nav-link px-2 text-body-secondary">{{ Site.Labels.Questions }}</a></li>
+                    <li class="nav-item"><a href="./about.html" class="nav-link px-2 text-body-secondary">{{ Site.Labels.About }}</a></li>
+                    </ul>
+                    <p class="text-center text-body-secondary">&copy; {{ Site.Name }}</p>
+                </footer>
+            </div>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", (e)=>{
+                document.querySelector("a#featured-node-act-fav").addEventListener("click", (e)=>{e.preventDefault();});
+            });
+        </script>
+    </body>
+</html>
