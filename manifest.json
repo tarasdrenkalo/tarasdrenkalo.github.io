@@ -2,6 +2,10 @@
     "name":"Test Website",
     "start_url":"https://tarasdrenkalo.github.io",
     "display":"fullscreen",
+    "icons":[
+	{"src":"https://tarasdrenkalo.github.io/icons/192x192.jpg","type":"image/jpeg","sizes":"192x192"},
+	{"src":"https://tarasdrenkalo.github.io/icons/512x512.jpg","type":"image/jpeg","sizes":"512x512"}
+   ],
     "theme_color":"blue",
     "lang":"en-US",
     "dir":"ltr",
