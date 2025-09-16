@@ -1,0 +1,12 @@
+[
+    {
+        "ID":1,
+        "Title":"Hello!",
+        "Summary":"Hello! You're seeing first post on this website! You're going to see more of them!",
+        "DatePublished":"",
+        "Article":[
+            {"h1":"Hello!"},
+            {"p":"Hello! You're seeing first post on this website! You're going to see more of them! Because I'm taking webpage design, you're going to see the journal posts, which you may share with others. Also, this is an opportunity for us to show our creativity. You're going to see many diverse journal entries later. Make a great day!"}
+        ]
+    }
+]

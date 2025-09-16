@@ -12,7 +12,7 @@
         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
         <script src="./scripts/app.vue.js"></script>
         <script src="./scripts/class.post.js"></script>
-        <script src="./scripts/page.main.js"></script>
+        <script src="./scripts/page.post.js"></script>
     </head>
     <body>
         <div id="vue-main">
@@ -41,16 +41,11 @@
 
             <div class="container">
                 <main>
-                    <div class="card" id="featured-post">
-                        <div class="card-header">
-                            {{Site.Labels.Featured}}
-                        </div>
-                        <div class="card-body">
-                            <h5 id="featured-post-headline" class="card-title"></h5>
-                            <p id="featured-post-summary" class="card-text"></p>
-                            <a id="featured-post-link" href="#" class="btn btn-primary">{{Site.Labels.Read}}</a>&nbsp;
-                            <a id="featured-post-action-favourite" href="#" class="btn btn-primary">{{Site.Labels.Favourite}}</a>
-                        </div>
+                    <article id="post-content"></article>
+                    <div class="btn-group">
+                        <a href="#" class="btn btn-primary active" id="previous-post">Prevoius</a>
+                        <a href="#" class="btn btn-primary" id="next-post">Next</a>
+                        <a href="#" class="btn btn-primary" id="featured-post-action-favourite">Favourite</a>
                     </div>
                 </main>
             </div>

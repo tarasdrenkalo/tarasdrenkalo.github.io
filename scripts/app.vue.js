@@ -5,7 +5,7 @@ const HeaderOrFooter = Vue.createApp({
                 Name: "My Test Website",
                 Labels:{
                     Home: "Home",
-                    Nodes: "Nodes",
+                    Journal: "Journal",
                     About: "About",
                     Questions:"Questions",
                     Favourites:"Favourites",
