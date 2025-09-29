@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Caracal</title>
+		<title>Photograph</title>
 		<meta charset="UTF-8">
 		<style>
 			body {
 				background-color:pink;
 			}
 		</style>
-		<script>
-			alert("You got pwned!");
-		</script>
+		<script src="../scripts/validate.js"></script>
 	</head>
 	<body>
-		<p>Caracal is dangerous</p>
+		<h1>Photograph</h1>
+		<figure>
+			<img sizes="(max-width: 30em) 100vw, (max-width: 50em) 50vw, calc(33vw-100px)" srcset="../images/Chemistry-Small.png 400w, ../images/Chemistry-Medium.png 600w, ../images/Chemistry-Large.png 800w" src="../images/Chemistry.png" alt="Chemistry Lab"/>
+			<figcaption>Chemistry Lab</figcaption>
+		</figure>
 	</body>
 </html>
