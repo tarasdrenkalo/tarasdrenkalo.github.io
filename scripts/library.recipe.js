@@ -6,7 +6,7 @@ class RecipeIngredient {
     }
     Render() {
         const elem = document.createElement("li");
-        elem.innerHTML = `${typeof this.Amount !== "undefined" ? this.Amount : ""} ${typeof this.Unit !== "undefined" ? this.Unit : ""}${typeof this.Name !== "undefined" ? " of " + this.Name : ""}`;
+        elem.innerHTML = `${typeof this.Amount !== "undefined" ? this.Amount : ""} ${typeof this.Unit !== "undefined" ? this.Unit : ""}${typeof this.Name !== "undefined" ? " " + this.Name : ""}`;
         return elem;
     }
 }
@@ -34,7 +34,11 @@ class Recipe {
         Content.id = "Recipe";
         this.Content = Content;
         this.Title = undefined;
-        this.Servings = 0;
+        this.Servings = 1;
+        this.CookingTime = 0;
+        this.PreparationTime = 0;
+        this.MiscTime = 0;
+        this.ServingsPerRecipe = 0;
         this.Photograph = {src:undefined, alt:undefined};
         this.Description = undefined;
         this.Ingredients = [];
@@ -153,6 +157,16 @@ class Recipe {
         })
         return this;
     }
+    AdjustPerServing(){
+        const servings = this.Servings;
+        const ingredients = this.Ingredients;
+        ingredients.forEach((ingredient)=>{
+            const IsValidIngredient = ingredient instanceof RecipeIngredient;
+            if(!IsValidIngredient) return;
+            ingredient.Amount = ingredient.Amount * servings;
+        });
+        return this;
+    }
     RenderIngredients() {
         const ListOfIngredients = document.createElement("ul");
         ListOfIngredients.id = "RecipeIngredients";
@@ -177,6 +191,36 @@ class Recipe {
             StepsList.appendChild(StepElem);
         });
         return StepsList;
+    }
+    RenderRecipeInfo(){
+        const MainTable = document.createElement("table");
+        const MainTableHeader = document.createElement("thead");
+        const MainTableBody = document.createElement("tbody");
+        const MainTableCaption = document.createElement("caption");
+        MainTableHeader.innerHTML = `<tr><th>Property</th><th>Value</th></tr>`;
+
+        const ServingsRow = document.createElement("tr");
+        const ServingsInteractive = document.createElement("input");
+        ServingsInteractive.id = "ServingsChooser";
+        ServingsInteractive.value = "1";
+        ServingsInteractive.min = ".1";
+        ServingsInteractive.step = ".1";
+        ServingsInteractive.max = "3";
+        ServingsInteractive.oninput = () => {
+            this.Servings = parseFloat(ServingsInteractive) || 1;
+            this.AdjustPerServing();
+        };
+        const ServingsInteractiveTdVal = document.createElement("td");
+        const ServingsInteractiveTdProp = document.createElement("td");
+        ServingsInteractiveTdProp.innerHTML = "Servings";
+        ServingsInteractiveTdVal.appendChild(ServingsInteractive);
+        ServingsRow.appendChild(ServingsInteractiveTdProp);
+        ServingsRow.appendChild(ServingsInteractiveTdVal);
+        MainTableBody.appendChild(ServingsRow);
+        MainTable.appendChild(MainTableCaption);
+        MainTable.appendChild(MainTableHeader);
+        MainTable.appendChild(MainTableBody);
+        return MainTable;
     }
     RenderRecipe() {
         const RecipeDOM = this.Content;

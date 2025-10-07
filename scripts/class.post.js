@@ -9,7 +9,7 @@ class Post {
         const PostID = parseInt(id) || 0;
         if (PostID <= 0) return false;
         try {
-            const r = await fetch("./dump/posts.json");
+            const r = await fetch("./dump/journal.json");
             if (!r.ok) return false;
             const AllPosts = await r.json();
             return AllPosts.some(post => post.ID === PostID);
@@ -20,7 +20,7 @@ class Post {
     }
     static async GetTotalPosts() {
         try {
-            const response = await fetch("./dump/posts.json");
+            const response = await fetch("./dump/journal.json");
             if (!response.ok) return 0; // or throw error
             const allPosts = await response.json();
             return Array.isArray(allPosts) ? allPosts.length : 0;
