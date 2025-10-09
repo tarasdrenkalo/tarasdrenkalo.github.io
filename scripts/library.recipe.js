@@ -35,7 +35,7 @@ class RecipeDump {
             const Cookie = document.cookie.split("; ").find((row) => row.startsWith(`CachedRecipe-${id}=`))?.split("=")[1];
             let Dump;
             if (!Cookie) {
-                const url = `http://${window.location.host}/dump/recipes.json`;
+                const url = `https://${window.location.host}/dump/recipes.json`;
                 const response = await fetch(url);
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 const data = await response.json();
