@@ -4,11 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+		table, td, th, tr {border:black 1px solid;
+		border-collapse:collapse;}
+	</style>
 </head>
 <body>
-    <script src="./scripts/library.recipe.js"></script>
-    <article id="Recipe"></article>
-    <script>new Recipe();</script>
-    <!--<script src="https://cdn.jsdelivr.net/gh/gracehoppercenter/validate@1.0.0/validate.js"></script> -->
+    <script src="https://tarasdrenkalo.github.io/scripts/library.recipe.js"></script>
+    <div id="RecipePage"></div>
+    <script>
+        (async () => {
+            const URLparams = new URLSearchParams(window.location.search);
+            const dump = await RecipeDump.FromID(URLparams.get("r")||"0");
+            if (!dump.Exists) {
+                document.querySelector("#RecipePage").innerText = "Recipe not found.";
+                return;
+            }
+            const r = Recipe.FromDump(dump);
+            r.PasteRecipe("div#RecipePage");
+        })();
+    </script>
 </body>
 </html>

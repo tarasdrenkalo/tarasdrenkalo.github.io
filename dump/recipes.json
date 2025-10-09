@@ -1,0 +1,143 @@
+{
+    "1":{
+        "Title": "Syrnyky",
+        "Description": "Syrnyky is one of favourites of my family. My mother has cooked them several times. Syrnyky look like mini versions of cheesecakes, but they are made with natural cottage cheese that was the result of oxidation of whole milk. Many years ago, my grandmother had been cooking them in large batches of up to 20–30 servings each. This meal was and is part of our kitchen in Ukraine and here. Even though my mother no longer cooks, she occasionally makes them for us exclusively. Be prepared—this recipe is more complex than it seems.",
+        "Photograph": {
+            "src": "https://tarasdrenkalo.github.io/images/Sirniki.webp",
+            "alt": "Syrnyky"
+        },
+        "ServingsPerRecipe": 8,
+        "Multiplier": 1,
+        "CookingTime": 15,
+        "PreparationTime": 15,
+        "MiscTime": 15,
+        "Ingredients": [
+            {
+                "BaseAmount": 500,
+                "Unit": "g",
+                "Name": "natural Cottage Cheese",
+                "IsWhole": true
+            },
+            {
+                "BaseAmount": 1,
+                "Unit": "eggs",
+                "Name": "",
+                "IsWhole": true
+            },
+            {
+                "BaseAmount": 2,
+                "Unit": "tbsp",
+                "Name": "sugar",
+                "IsWhole": true
+            },
+            {
+                "BaseAmount": 1,
+                "Unit": "g",
+                "Name": "vanilla",
+                "IsWhole": true
+            },
+            {
+                "BaseAmount": 1,
+                "Unit": "g",
+                "Name": "salt",
+                "IsWhole": true
+            },
+            {
+                "BaseAmount": 50,
+                "Unit": "ml",
+                "Name": "vegetable oil for frying",
+                "IsWhole": true
+            },
+            {
+                "BaseAmount": 5,
+                "Unit": "tbsp",
+                "Name": "all-purpose flour",
+                "IsWhole": true
+            }
+        ],
+        "Steps": [
+            "Mix natural cottage cheese, sugar, eggs, vanilla, and salt together in large bowl.",
+            "Add some flour and mix the substance again.",
+            "Form small/medium sized balls from the mixture, cover with flour, and form flattened syrnyk",
+            "Cover syrnyky with remainer of the flour.",
+            "Pour vegetable oil into pan for frying.",
+            "Let syrnyky frying until side below is covered with golden crust.",
+            "Roll over syrnyky and let another side fry.",
+            "Enjoy your meal."
+        ]
+    },
+    "2":{
+        "Title": "Zapikanka",
+        "Description": "Zapikanka is almost the same as cheesecake, but cream cheese is replaced with natural cottage cheese as a result of the oxidation of milk. My family also often used to bake that. My grandmother also used to do that. As a tradition, we may bake zapikanka as exclusive among us.",
+        "Photograph": {
+            "src": "http://tarasdrenkalo.github.io/images/Pierog.webp",
+            "alt": "Zapikanka"
+        },
+        "ServingsPerRecipe": 6,
+        "Multiplier": 1,
+        "CookingTime": 10,
+        "PreparationTime": 10,
+        "MiscTime": 60,
+        "Ingredients": [
+            {
+                "BaseAmount": 1,
+                "Unit": "kg",
+                "Name": "yeast-free puff pastry",
+                "IsWhole": false
+            },
+            {
+                "BaseAmount": 1,
+                "Unit": "liter",
+                "Name": "milk",
+                "IsWhole": false
+            },
+            {
+                "BaseAmount": 4,
+                "Unit": "eggs",
+                "Name": "",
+                "IsWhole": true
+            },
+            {
+                "BaseAmount": 200,
+                "Unit": "g",
+                "Name": "sugar",
+                "IsWhole": false
+            },
+            {
+                "BaseAmount": 1,
+                "Unit": "g",
+                "Name": "vanilla",
+                "IsWhole": true
+            },
+            {
+                "BaseAmount": 200,
+                "Unit": "g",
+                "Name": "butter",
+                "IsWhole": false
+            },
+            {
+                "BaseAmount": 100,
+                "Unit": "g",
+                "Name": "all-purpose flour",
+                "IsWhole": false
+            }
+        ],
+        "Steps": [
+            "Defrost yeast-free puff pastry, unfold and cut into thin layers, then prick each layer with fork.",
+            "Bake at 390&deg;F for ~25 min.",
+            "Let the crust cool off. Cut each cake into three pieces.",
+            "Crumble one part of the top cake separately in a plate for sprinkling.",
+            "Put the cake away, and we start cooking cream for sprinkling",
+            "Pass flour through net",
+            "Prepare butter of air temperature.",
+            "Mix eggs, sugar, butter and flour until seemly perfect substance without bumps.",
+            "Add milk and remix (mix again) the substance.",
+            "Mixing slowly until it starts showing bubbles.",
+            "Put the cake on a dish and grease generously with cream.",
+            "Repeat same with all layers",
+            "Sprinkle the sides and top of the cake with crumbs from the cake.",
+            "Refrigerate for at least 12 hours.",
+            "<strong>Enjoy your party!</strong>"
+        ]
+    }
+}
