@@ -167,7 +167,8 @@ class Recipe {
             ing.BaseAmount = i.BaseAmount;
             r.AddIngredient(ing);
         });
-
+        const multiplier = parseFloat(new URLSearchParams(window.location.search).get("m")) || 1;
+        r.AdjustPerServing(multiplier);
         return r;
     }
 
