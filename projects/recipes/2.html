@@ -14,13 +14,21 @@
     <div id="RecipePage"></div>
     <script>
         (async () => {
-            const dump = await RecipeDump.FromID("2");
+            const URLparams = new URLSearchParams(window.location.search);
+            const dump = await RecipeDump.FromID(URLparams.get("r")||"0");
             if (!dump.Exists) {
                 document.querySelector("#RecipePage").innerText = "Recipe not found.";
                 return;
             }
             const r = Recipe.FromDump(dump);
             r.PasteRecipe("div#RecipePage");
+            document.addEventListener("DOMContentLoaded", ()=>{
+                const URLParams = new URLSearchParams(window.location.search);
+        
+                if(URLParams.get("action") == "print"){
+                    window.print();
+                }
+            })
         })();
     </script>
 </body>

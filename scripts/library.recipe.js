@@ -35,7 +35,7 @@ class RecipeDump {
             const Cookie = document.cookie.split("; ").find((row) => row.startsWith(`CachedRecipe-${id}=`))?.split("=")[1];
             let Dump;
             if (!Cookie) {
-                const url = `https://${window.location.host}/dump/recipes.json`;
+                const url = `${window.location.protocol}//${window.location.host}/dump/recipes.json`;
                 const response = await fetch(url);
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 const data = await response.json();
@@ -138,7 +138,6 @@ class Recipe {
         ManifestLink.rel = "manifest";
         ManifestLink.href = bloburl;
         document.head.appendChild(ManifestLink);
-
         const ValidatorNeeded = window.location.host === "tarasdrenkalo.github.io";
         if(ValidatorNeeded){
             const VLink = document.createElement("script");
@@ -198,6 +197,7 @@ class Recipe {
         const Photograph = new Image();
         Photograph.title = this.Photograph.alt;
         Photograph.src = this.Photograph.src;
+        Photograph.referrerPolicy = "no-referrer";
         Photograph.onload = () => {
             Photograph.width = 200;
             Photograph.height = 200 * (Photograph.naturalHeight / Photograph.naturalWidth);
@@ -256,8 +256,6 @@ class Recipe {
                 ? Math.round(scaled)
                 : parseFloat(scaled.toFixed(1));
         });
-
-        // 🔄 re-render the ingredient list
         const IngredientsList = document.querySelector(this.RecipeIngredientsSelector);
         if (IngredientsList) {
             IngredientsList.innerHTML = "";
@@ -292,6 +290,7 @@ class Recipe {
         return StepsList;
     }
     RenderRecipeInfo(){
+        const URLParams = new URLSearchParams(window.location.search);
         const MainTable = document.createElement("table");
         const MainTableHeader = document.createElement("thead");
         const MainTableBody = document.createElement("tbody");
@@ -302,7 +301,7 @@ class Recipe {
         ServingsInteractive.type = "number";
         ServingsInteractive.title = "Multiplier";
         ServingsInteractive.id = "ServingsChooser";
-        ServingsInteractive.value = "1";
+        ServingsInteractive.value = URLParams.get("m")||"1";
         ServingsInteractive.min = ".1";
         ServingsInteractive.step = ".05";
         ServingsInteractive.max = "10";
