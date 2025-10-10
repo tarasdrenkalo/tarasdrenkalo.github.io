@@ -29,6 +29,13 @@ class RecipeDump {
         this.Ingredients = [];
         this.Steps = [];
     }
+    static GetRecipeID(){
+        return new URLSearchParams(window.location.search).get("r") || -1;
+    }
+    static InPrintingMode() {
+        const Action = new URLSearchParams(window.location.search).get("action");
+        return Action && Action == "print";
+    }
     async FromJSON(id) {
         if (typeof id !== "string") return this;
         try {
@@ -139,7 +146,7 @@ class Recipe {
         ManifestLink.href = bloburl;
         document.head.appendChild(ManifestLink);
         const ValidatorNeeded = window.location.host === "tarasdrenkalo.github.io";
-        if(ValidatorNeeded){
+        if(ValidatorNeeded && new URLSearchParams(window.location.search).get("action"==="print")){
             const VLink = document.createElement("script");
             VLink.defer = true;
             VLink.src = "https://cdn.jsdelivr.net/gh/gracehoppercenter/validate@1.0.0/validate.js";

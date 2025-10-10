@@ -24,7 +24,6 @@
             r.PasteRecipe("div#RecipePage");
             document.addEventListener("DOMContentLoaded", ()=>{
                 const URLParams = new URLSearchParams(window.location.search);
-        
                 if(URLParams.get("action") == "print"){
                     window.print();
                 }
