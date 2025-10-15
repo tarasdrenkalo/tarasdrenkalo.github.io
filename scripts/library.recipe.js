@@ -114,7 +114,7 @@ class Recipe {
         const App = {
             "name": "Family Recipes Project",
             "short_name":"Recipes",
-            "start_url": `${BaseUrl}/projects/recipe.html?r=1`,
+            "start_url": `${BaseUrl}/projects/recipes/index.html`,
             "display": "standalone",
             "icons": [
                 {
