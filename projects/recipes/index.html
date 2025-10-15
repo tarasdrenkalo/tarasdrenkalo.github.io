@@ -1,86 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Family Recipes Project</title>
-    <style>
-        h1 {
-            text-align: center;
-        }
-        img {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 50%;
-        }
-        figcaption, p#SiteDescription, blockquote#SiteDescription {
-            margin-top: 20px;
-            margin-bottom: 20px;
-            text-align: justify;
-            margin-left: auto;
-            margin-right: auto;
-            width: 40%;
-        }
-        div#RecipeBox {
-            margin-top: 50px;
-            margin-bottom: 50px;
-        }
-        h2#RecipeTitle {
-            text-align: center;
-        }
-        br#quote {
-            display: block;
-            margin-bottom: 5px;
-        }
-    </style>
-    <script src="https://tarasdrenkalo.github.io/scripts/library.recipe.js"></script>
-</head>
-<body>
-    <h1 class="container">Family Recipes Project</h1>
-    <script>
-        Recipe.App();
-        try {
-            fetch("https://tarasdrenkalo.github.io/dump/recipes.json").then((r)=>{
-                if(r.ok){
-                    const json = r.json().then((Dumps)=>{
-                        const Dump = Object.values(Dumps);
-                        console.log(Dump);
-                        const Container = document.querySelector("div#Recipes");
-                        Container.innerHTML = `<p id="SiteDescription">Hello! This is a Family Recipe project, which is made with minimal HTML and some interesting stuff! There're two sample recipes you may try yourself. These recipes contain one special ingredient &mdash; natural cottage cheese, which is the result of whole milk being oxidised and then filtered to separate from liquid.</p><blockquote id="SiteDescription">&quot;My grandchildren have helped me to cook this delicious stuff! I'm so thankful for their contributuion!&quot; &mdash; <cite>Grandmother</cite></blockquote><blockquote id="SiteDescription">&quot;Ooo, there're some delicious syrnyky, I would take some to taste while I'm alive!&quot; &mdash; <cite>Grandfather</cite></blockquote>`;
-                        Dump.forEach((content)=>{
-                            const RecipeBox = document.createElement("div");
-                            RecipeBox.classList.add("container");
-                            RecipeBox.id = "RecipeBox";
-                            const Title = content.Title;
-                            const Description = content.Description;
-                            const Photograph = content.Photograph;
-    
-                            const H2 = document.createElement("h2");
-                            H2.id = "RecipeTitle";
-                            H2.innerHTML = Title;
-                            RecipeBox.appendChild(H2);
-    
-                            const FigureElem = document.createElement("figure");
-                            const ImageElem = document.createElement("img");
-                            ImageElem.src = Photograph.src;
-                            ImageElem.alt = Photograph.alt;
-                            ImageElem.title = Photograph.alt;
-                            FigureElem.appendChild(ImageElem);
-    
-                            const FigCaptionElem = document.createElement("figcaption");
-                            FigCaptionElem.innerHTML = Description + ` You can also <a href="${window.location.protocol}//${window.location.host}/projects/recipe.html?r=${Dump.indexOf(content)+1}">cook that yourself</a> or <a href="${window.location.protocol}//${window.location.host}/projects/recipe.html?r=${Dump.indexOf(content)+1}&action=print">print this recipe</a>!`;
-                            FigureElem.appendChild(FigCaptionElem);
-                            RecipeBox.appendChild(FigureElem);
-                            Container.appendChild(RecipeBox);
-                        });
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Family Recipes Project</title>
+        <style>
+            h1 {
+                text-align: center;
+            }
+            img {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 50%;
+            }
+            figcaption, p#SiteDescription, blockquote#SiteDescription {
+                margin-top: 20px;
+                margin-bottom: 20px;
+                text-align: justify;
+                margin-left: auto;
+                margin-right: auto;
+                width: 70%;
+            }
+            div#RecipeBox {
+                margin-top: 50px;
+                margin-bottom: 50px;
+            }
+            h2#RecipeTitle {
+                text-align: center;
+            }
+            br#quote {
+                display: block;
+                margin-bottom: 5px;
+            }
+        </style>
+        <script src="https://tarasdrenkalo.github.io/scripts/library.recipe.js"></script>
+    </head>
+    <body>
+        <h1 class="container">Family Recipes Project</h1>
+        <script>
+            document.addEventListener("DOMContentLoaded", async function() {
+                Recipe.App();
+                try {
+                    const Cookie = sessionStorage.getItem("CachedRecipes");
+                    let Dumps;
+                    if(!Cookie){
+                        const response = await fetch("https://tarasdrenkalo.github.io/dump/recipes.json");
+                        if(!response.ok) throw "Failed to fetch recipes";
+                        Dumps = await response.json();
+                        if (Dumps) {
+                            sessionStorage.setItem("CachedRecipes", encodeURIComponent(JSON.stringify(Dumps)));
+                        }
+                    } else {
+                        Dumps = JSON.parse(decodeURIComponent(Cookie));
+                    }
+                    const Dump = Object.values(Dumps);
+                    const Container = document.querySelector("div#Recipes");
+                    Container.innerHTML = `<p id="SiteDescription">Hello! This is a Family Recipe project, which is made with minimal HTML and some interesting stuff! There're two sample recipes you may try yourself. These recipes contain one special ingredient &mdash; natural cottage cheese, which is the result of whole milk being oxidised and then filtered to separate from liquid.</p><blockquote id="SiteDescription">&quot;My grandchildren have helped me to cook this delicious stuff! I'm so thankful for their contributuion!&quot; &mdash; <cite>Grandmother</cite></blockquote><blockquote id="SiteDescription">&quot;Ooo, there're some delicious syrnyky, I would take some to taste while I'm alive!&quot; &mdash; <cite>Grandfather</cite></blockquote>`;
+                    Dump.forEach((content)=>{
+                        const RecipeBox = document.createElement("div");
+                        RecipeBox.classList.add("container");
+                        RecipeBox.id = "RecipeBox";
+                        const Title = content.Title;
+                        const Description = content.Description;
+                        const Photograph = content.Photograph;
+                        const H2 = document.createElement("h2");
+                        H2.id = "RecipeTitle";
+                        H2.innerHTML = Title;
+                        RecipeBox.appendChild(H2);
+                        const FigureElem = document.createElement("figure");
+                        const ImageElem = document.createElement("img");
+                        ImageElem.src = Photograph.src;
+                        ImageElem.alt = Photograph.alt;
+                        ImageElem.title = Photograph.alt;
+                        FigureElem.appendChild(ImageElem);
+                        const FigCaptionElem = document.createElement("figcaption");
+                        FigCaptionElem.innerHTML = Description + ` You can also <a href="${window.location.protocol}//${window.location.host}/projects/recipe.html?r=${Dump.indexOf(content)+1}">cook that yourself</a> or <a href="${window.location.protocol}//${window.location.host}/projects/recipe.html?r=${Dump.indexOf(content)+1}&action=print">print this recipe</a>!`;
+                        FigureElem.appendChild(FigCaptionElem);
+                        RecipeBox.appendChild(FigureElem);
+                        Container.appendChild(RecipeBox);
                     });
+                } catch (error) {
+                    console.warn(`Failed to load recipe: ${error?.message || error}`);
                 }
             });
-        } catch (error) {
-            console.warn(`Failed to load recipe: ${error}`);
-        }
-    </script>
-    <div id="Recipes"></div>
-</body>
+        </script>
+        <div id="Recipes"></div>
+    </body>
 </html>

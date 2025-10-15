@@ -44,7 +44,7 @@ class RecipeDump {
     async FromJSON(id) {
         if (typeof id !=="string") return this;
         try {
-            const Cookie = document.cookie.split("; ").find((row) => row.startsWith(`CachedRecipe-${id}=`))?.split("=")[1];
+            const Cookie = sessionStorage.getItem(`CachedRecipe-${id}`);
             let Dump;
             if (!Cookie) {
                 const url = `${window.location.protocol}//${window.location.host}/dump/recipes.json`;
@@ -53,7 +53,7 @@ class RecipeDump {
                 const data = await response.json();
                 Dump = data[id];
                 if (Dump) {
-                    document.cookie = `CachedRecipe-${id}=${encodeURIComponent(JSON.stringify(Dump))}; max-age=7200; expires=${new Date(Date.now() + 7200 * 1000).toUTCString()}; SameSite=Strict; Secure`;
+                    sessionStorage.setItem(`CachedRecipe-${id}`, encodeURIComponent(JSON.stringify(Dump)));
                 }
             } else {
                 Dump = JSON.parse(decodeURIComponent(Cookie));
