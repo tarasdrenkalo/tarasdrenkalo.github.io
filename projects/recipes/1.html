@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Family Recipe Project</title>
+    <title>Family Recipes Project</title>
     <style>
 		table, td, th, tr {border:black 1px solid;
 		border-collapse:collapse;}
@@ -15,8 +15,7 @@
     <script>
         (async () => {
             Recipe.App();
-            const URLparams = new URLSearchParams(window.location.search);
-            const dump = await RecipeDump.FromID("1");
+            const dump = await RecipeDump.FromID(RecipeDump.GetRecipeID());
             if (!dump.Exists) {
                 document.querySelector("#RecipePage").innerText = "Recipe not found.";
                 return;

@@ -31,7 +31,8 @@ class RecipeDump {
     }
     static GetRecipeID(asnumber){
         const RParam = new URLSearchParams(window.location.search).get("r");
-        return asnumber && typeof asnumber ==="boolean" ? parseInt(RParam)|| -1 : RParam;
+        const Match = window.location.pathname.match(/\/\d+/gmi)?.toString().substring(1);
+        return asnumber && typeof asnumber ==="boolean" ? parseInt(RParam || Match)|| -1 : (RParam || Match);
     }
     static InPrintingMode() {
         const Action = new URLSearchParams(window.location.search).get("action");
@@ -331,8 +332,8 @@ class Recipe {
             const tr = document.createElement("tr");
             const td1 = document.createElement("td");
             const td2 = document.createElement("td");
-            td1.textContent = prop;
-            td2.textContent = val;
+            td1.innerHTML = prop;
+            td2.innerHTML = val;
             if(id && typeof id ==="string"){
                 td2.id = id;
             }
@@ -351,7 +352,7 @@ class Recipe {
             const MaxServings = parseFloat(ServingsInteractive.max);
             this.Servings = MinServings <= Servings && Servings <= MaxServings ?this.ServingsPerRecipe * Servings:1;
             this.AdjustPerServing(Servings);
-            document.querySelector("td#ServingCounter").textContent = `~${Math.round(this.ServingsPerRecipe * Servings)}`;
+            document.querySelector("td#ServingCounter").innerHTML = `~${Math.round(this.ServingsPerRecipe * Servings)}`;
         });
         MainTable.append(MainTableCaption, MainTableHeader, MainTableBody);
         return MainTable;
@@ -373,7 +374,7 @@ class Recipe {
         }
 
         const DescriptionElem = document.createElement("h2");
-        DescriptionElem.id = "RecipeDescription";
+        //DescriptionElem.id = "RecipeDescription";
         DescriptionElem.innerHTML = "Description";
         RecipeDOM.appendChild(DescriptionElem);
 
@@ -385,7 +386,7 @@ class Recipe {
         }
 
         const IngredientsElem = document.createElement("h2");
-        IngredientsElem.id = "RecipeIngredients";
+        //IngredientsElem.id = "RecipeIngredients";
         IngredientsElem.innerHTML = "Ingredients";
         RecipeDOM.appendChild(IngredientsElem);
 
@@ -394,13 +395,37 @@ class Recipe {
         }
 
         const StepsElem = document.createElement("h2");
-        StepsElem.id = "RecipeSteps";
+        //StepsElem.id = "RecipeSteps";
         StepsElem.innerHTML = "Procedure";
         RecipeDOM.appendChild(StepsElem);
 
         if(StepsDOM instanceof HTMLOListElement){
             RecipeDOM.appendChild(StepsDOM);
         }
+
+        if(!RecipeDump.InPrintingMode()) {
+            const ActionHeader = document.createElement("h2");
+            ActionHeader.innerHTML = "Actions";
+            RecipeDOM.appendChild(ActionHeader);
+
+            const GoBack = document.createElement("a");
+            const ActionUl = document.createElement("ul");
+            const GoBackLi = document.createElement("li");
+            GoBack.innerHTML = "Go to main page";
+            GoBack.href = `${window.location.protocol}//${window.location.host}/projects/recipes/index.html`;
+            GoBackLi.appendChild(GoBack);
+            ActionUl.appendChild(GoBackLi);
+            RecipeDOM.appendChild(ActionUl);
+
+            const PrintLi = document.createElement("li");
+            const PrintLink = document.createElement("a");
+            PrintLink.innerHTML = "Share this recipe";
+            PrintLink.href = `${window.location.protocol}//${window.location.host}/projects/recipe.html?r=${RecipeDump.GetRecipeID()}&action=print`;
+            PrintLi.appendChild(PrintLink);
+            ActionUl.appendChild(PrintLi);
+            RecipeDOM.appendChild(ActionUl);
+        }
+
         return RecipeDOM;
     }
     PasteRecipe(Selector){
