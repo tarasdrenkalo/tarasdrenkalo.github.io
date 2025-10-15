@@ -29,15 +29,19 @@ class RecipeDump {
         this.Ingredients = [];
         this.Steps = [];
     }
-    static GetRecipeID(){
-        return new URLSearchParams(window.location.search).get("r") || -1;
+    static GetRecipeID(asnumber){
+        const RParam = new URLSearchParams(window.location.search).get("r");
+        return asnumber && typeof asnumber ==="boolean" ? parseInt(RParam)|| -1 : RParam;
     }
     static InPrintingMode() {
         const Action = new URLSearchParams(window.location.search).get("action");
-        return Action && Action == "print";
+        return typeof Action ==="string" && Action === "print";
+    }
+    static GetMultiplier(){
+        return parseFloat(new URLSearchParams(window.location.search).get("m")) ||1;
     }
     async FromJSON(id) {
-        if (typeof id !== "string") return this;
+        if (typeof id !=="string") return this;
         try {
             const Cookie = document.cookie.split("; ").find((row) => row.startsWith(`CachedRecipe-${id}=`))?.split("=")[1];
             let Dump;
@@ -48,7 +52,7 @@ class RecipeDump {
                 const data = await response.json();
                 Dump = data[id];
                 if (Dump) {
-                    document.cookie = `CachedRecipe-${id}=${encodeURIComponent(JSON.stringify(Dump))}; max-age=7200; expires=${new Date(Date.now() + 7200 * 1000).toUTCString()}; path=/; SameSite=Strict`;
+                    document.cookie = `CachedRecipe-${id}=${encodeURIComponent(JSON.stringify(Dump))}; max-age=7200; expires=${new Date(Date.now() + 7200 * 1000).toUTCString()}; SameSite=Strict; Secure`;
                 }
             } else {
                 Dump = JSON.parse(decodeURIComponent(Cookie));
@@ -103,11 +107,13 @@ class Recipe {
         this.Servings = this.ServingsPerRecipe * this.Multiplier;
         this.Ingredients = [];
         this.Steps = [];
+    }
+    static App() {
         const BaseUrl = `${window.location.protocol}//${window.location.host}`;
         const App = {
             "name": "Family Recipes Project",
             "short_name":"Recipes",
-            "start_url": `${BaseUrl}/recipe.html?r=1`,
+            "start_url": `${BaseUrl}/projects/recipe.html?r=1`,
             "display": "standalone",
             "icons": [
                 {
@@ -145,8 +151,8 @@ class Recipe {
         ManifestLink.rel = "manifest";
         ManifestLink.href = bloburl;
         document.head.appendChild(ManifestLink);
-        const ValidatorNeeded = window.location.host === "tarasdrenkalo.github.io";
-        if(ValidatorNeeded && new URLSearchParams(window.location.search).get("action"==="print")){
+        const ValidatorNeeded = window.location.host === "tarasdrenkalo.github.io" && !RecipeDump.InPrintingMode();
+        if(ValidatorNeeded){
             const VLink = document.createElement("script");
             VLink.defer = true;
             VLink.src = "https://cdn.jsdelivr.net/gh/gracehoppercenter/validate@1.0.0/validate.js";
@@ -174,7 +180,7 @@ class Recipe {
             ing.BaseAmount = i.BaseAmount;
             r.AddIngredient(ing);
         });
-        const multiplier = parseFloat(new URLSearchParams(window.location.search).get("m")) || 1;
+        const multiplier = RecipeDump.GetMultiplier();
         r.AdjustPerServing(multiplier);
         return r;
     }
@@ -398,6 +404,7 @@ class Recipe {
         return RecipeDOM;
     }
     PasteRecipe(Selector){
+        Recipe.App();
         if (typeof Selector !== "string") return;
         const Target = document.querySelector(Selector);
         if (!Target) {
@@ -406,5 +413,8 @@ class Recipe {
         }
         const Rendered = this.RenderRecipe();
         if (Rendered) Target.appendChild(Rendered);
+        document.addEventListener("DOMContentLoaded", ()=>{
+            if(RecipeDump.InPrintingMode()) window.print();
+        });
     }
 }

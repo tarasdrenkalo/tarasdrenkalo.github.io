@@ -14,6 +14,7 @@
     <div id="RecipePage"></div>
     <script>
         (async () => {
+            Recipe.App();
             const URLparams = new URLSearchParams(window.location.search);
             const dump = await RecipeDump.FromID(URLparams.get("r")||"0");
             if (!dump.Exists) {
@@ -23,13 +24,9 @@
             const r = Recipe.FromDump(dump);
             r.PasteRecipe("div#RecipePage");
             document.addEventListener("DOMContentLoaded", ()=>{
-                const URLParams = new URLSearchParams(window.location.search);
-                if(URLParams.get("action") == "print"){
-                    window.print();
-                }
-            })
+                if(RecipeDump.InPrintingMode()) window.print();
+            });
         })();
-        
     </script>
 </body>
 </html>
