@@ -41,7 +41,7 @@
     <script>
         Recipe.App();
         try {
-            fetch("https://tarasdrenkalo.github.io/scripts/library.recipe.js/dump/recipes.json").then((r)=>{
+            fetch("https://tarasdrenkalo.github.io/dump/recipes.json").then((r)=>{
                 if(r.ok){
                     const json = r.json().then((Dumps)=>{
                         const Dump = Object.values(Dumps);
