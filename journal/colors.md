@@ -20,4 +20,4 @@
 
 ## Drawing
 
-Will be here soon!
+![This is original drawing as I promised!](../images/originalpixelart.png)
