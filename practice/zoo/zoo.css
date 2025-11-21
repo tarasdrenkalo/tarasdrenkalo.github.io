@@ -1,0 +1,72 @@
+html {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    cursor: default;
+    user-select: none;
+    text-align: center;
+}
+li {
+    display: inline;
+    font-size: 24px;
+    padding: 20px 20px 20px 20px;
+    
+}
+@keyframes navlinkcolour {
+    from {
+        text-decoration: wavy orange underline;
+        color: orange;
+    }
+    to {
+        text-decoration: wavy green underline;
+        color: green;
+    }
+}
+@keyframes blinktext {
+    0% {
+        color: darkorange;
+    }
+    50% {
+        color: darkblue;
+    }
+    100% {
+        color: darkorange;;
+    }
+}
+nav.navigation {
+    border: 3px solid turquoise;
+    border-radius: 4px;
+    background-color: turquoise;
+}
+a.navlink, li#sitename {
+    text-decoration: wavy orange underline;
+    color: orange;
+}
+a.navlink:hover, li#sitename:hover {
+    animation: navlinkcolour 1s ease;
+    text-decoration: wavy green underline;
+    color: green;
+}
+h1.main-heading{
+    margin-bottom: 2px;
+}
+td, caption, th {
+    border: 2px solid green;
+    padding: 5px;
+}
+p.sub-heading {
+    margin-top: 3px;
+}
+td.col-description {
+    text-align: justify;
+    text-indent: 20px;
+    width:150px;
+}
+
+h2.sec-heading {
+    margin-bottom: 3px;
+}
+table.tbl {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3px;
+    animation: blinktext 3s infinite ease-in-out;
+}
