@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/gh/gracehoppercenter/validate@1.0.0/validate.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warm Up &mdash; Box Model Practice</title>
+    <style>
+        .box {
+            background-clip:content-box;
+            border:2px solid;
+            width:100px;
+            aspect-ratio:1;
+            z-index:0;
+        }
+        .b1 {
+            background-color: red;
+            margin-left:300px;
+        }
+        .b2 {
+            background-color: blue;
+            padding:100px;
+            margin-left:402px;
+            margin-top:-2px;
+        }
+        .b3 {
+            margin-top:25px;
+            background-color: green;
+            padding-left:10px;
+        }
+        .b4 {
+            margin-top:25px;
+            margin-left:325px;
+            background-color: yellow;
+            padding-top:50px;
+            padding-left:25px;
+            padding-right:25px;
+        }
+        .b5 {
+            background-color: purple;
+            margin-left:223px;
+            margin-top:-2px;
+            padding-bottom:100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box b1"></div>
+    <div class="box b2"></div>
+    <div class="box b3"></div>
+    <div class="box b4"></div>
+    <div class="box b5"></div>
+</body>
+</html>
