@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/gh/gracehoppercenter/validate@1.0.0/validate.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Map</title>
+    <style>
+        img#photo {
+            width: 100%;
+            aspect-ratio: 1;
+            user-select: none;
+            -webkit-user-drag: none;
+            align-self: center;
+            border-radius: 1%;
+        }
+    </style>
+</head>
+<body>
+    <div id="img">
+        <img id="photo" src="../images/whsmap.png" alt="Wakefield High School" usemap="#whsmap">
+        <map name="whsmap">
+            <area shape="circle" coords="50,90,100" href="https://buseta.wmata.com/#A66" alt="Bus Stop">
+        </map>
+    </div>
+</body>
+</html>
