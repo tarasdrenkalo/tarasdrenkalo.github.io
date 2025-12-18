@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Here, I got you some chocolates &lt;3</title>
+        <style>
+            body{
+                background: linear-gradient(135deg, #1a2980, #26d0ce);
+                height: 100vh;
+            }
+            h1{
+                text-align: center;
+                font-family: Tahoma, sans-serif;
+                color: white;
+            }
+            .container {
+              display: grid;
+              width: 80vw;
+              height: 80vh;
+              margin: auto;
+              grid-template-columns: repeat(3, 1fr);
+              grid-template-rows: repeat(3, 1fr);
+              background-color: Thistle;
+              padding: 10px;
+              border-radius: 20px;
+              border: 8px solid red;
+            }
+            .heart {
+              height: 20vh; /* adjust to control the size */
+              aspect-ratio: 1;
+              --_m: radial-gradient(#000 69%,#0000 70%) 84.5%/50%;
+              -webkit-mask-box-image: var(--_m);
+                         mask-border: var(--_m);
+              clip-path: polygon(-41% 0,50% 91%, 141% 0);
+              background-color: chocolate;
+              margin: auto;
+            }
+            /* fallback until better support for mask-border */
+            @supports not (-webkit-mask-box-image: var(--_m)) { 
+              .heart {
+                mask:
+                 radial-gradient(at 70% 31%,#000 29%,#0000 30%),
+                 radial-gradient(at 30% 31%,#000 29%,#0000 30%),
+                 conic-gradient(#000 0 0) bottom/100% 50% no-repeat;
+              }
+            }
+            #chocolateheart{
+                grid-column-start: 3;
+                grid-row-start:2;
+            }
+            .lilbits{
+                grid-column-start: 1;
+                grid-row-start: 1;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(3, 1fr);
+                gap:5px;
+            }
+            .mnm{
+                width:10vh;
+                height:10vh;
+                border-radius:50%;
+                margin: auto;
+                display: grid;
+                place-items: center;
+                font-size: 2em;
+            }
+        </style>
+        <script>
+            
+            document.addEventListener("DOMContentLoaded", ()=>{
+                function PaintMNM(id, bcolour, lcolour){
+                        const styles = document.querySelector(`div.mnm${id}`).style;
+                        styles.backgroundColor = bcolour;
+                        styles.color = lcolour;
+                }
+                const mnms = [
+                    [1, "yellow", "red"],
+                    [2, "green", "cyan"],
+                    [3, "orange", "darkblue"],
+                    [4, "lime", "brown"],
+                    [5, "lightyellow", "turquoise"],
+                    [6, "brown", "white"],
+                    [7, "purple", "yellow"],
+                    [8, "cyan", "orange"],
+                    [9, "blue", "pink"],
+                ];
+                mnms.forEach((t)=>PaintMNM(t[0], t[1], t[2]));
+            }); 
+            
+        </script>
+    </head>
+    <body>
+        <h1>Here, I got you some chocolates &lt;3</h1>
+        <div class="container">
+            <div class="heart" id="chocolateheart"></div>
+            <div class="lilbits">
+                <div class="mnm mnm1">m</div>
+                <div class="mnm mnm2">m</div>
+                <div class="mnm mnm3">m</div>
+                <div class="mnm mnm4">m</div>
+                <div class="mnm mnm5">m</div>
+                <div class="mnm mnm6">m</div>
+                <div class="mnm mnm7">m</div>
+                <div class="mnm mnm8">m</div>
+                <div class="mnm mnm9">m</div>
+            </div>
+        </div>
+    </body>
+</html> 
