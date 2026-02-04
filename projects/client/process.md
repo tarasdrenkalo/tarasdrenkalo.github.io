@@ -7,7 +7,7 @@
 * Continue working with client.
 
 
-## January 12
+## 12 January
 ### Design
 
 ![Design Mockup](DesignMockup.png)
@@ -35,3 +35,17 @@
 - Black font
 - White font for contrast
 - Search bar
+
+## 14 January
+
+## Todo
+- Replace Fun Fact Card with "About Me"
+- Include "Fun Facts" to Menu Dropdown
+- Change "Simple" To "Fun
+- Change font typeface to Roboto
+
+## 15 January
+- Scrapped `data-mode=dark` entirely
+- Split "About Me" and "Articles" into two parts because grids did not resize.
+- Added Darkmode.
+- Adapted for mobiles.

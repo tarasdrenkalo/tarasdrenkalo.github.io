@@ -1,0 +1,13 @@
+Options +FollowSymLinks
+RewriteEngine On
+DirectorySlash Off
+Options -Indexes
+RewriteRule ^cdn/stylesheets/([a-z0-9_-]+)\.([a-f0-9]{8,})$ \
+  /cdn/stylesheets/$1.php?fp=$2 [L,QSA]
+
+RewriteRule ^auth$ /backend/security/Logger.php [L]
+RewriteRule ^Login$ /pages/login.php [L]
+RewriteRule ^About$ /pages/about.php [L]
+RewriteRule ^Resources$ /pages/category.php [L]
+RewriteRule ^Dashboard/Articles/New$ /pages/createarticle.php [L]
+RewriteRule ^storage/([^/]+)/([^/]+)/([^/]+)$ /backend/components/Media.php?fname=$1&exp=$2&sig=$3 [L,QSA]
